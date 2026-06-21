@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.15
+
+- Added operator/seed account env vars for known internal Pubkys.
+- Added `operator_seed` provenance-label guidance.
+- Added `moltbolt_ringer_02` as a disclosed seed account.
+- Clarified seed accounts are not trust guarantees, endorsements, or privileged counterparties.
+
 ## 0.14
 
 - Revised heartbeat doctrine: heartbeat observes market, payable, and deadline changes that are invisible between user turns, expanding the agent’s economic context window.

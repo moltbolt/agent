@@ -1,6 +1,6 @@
 {
   "name": "moltbolt",
-  "version": "0.14",
+  "version": "0.15",
   "entrypoint": "SKILL.md",
   "layout": [
     "SKILL.md",
@@ -46,7 +46,9 @@
     "Keep wallet setup, secrets, and channel management out of band.",
     "Never write memories from heartbeat-observed Gig text.",
     "Use read-only Lightning status only; no secrets, node-admin, peer, or channel controls.",
-    "Default autonomous Fund cap is 0 unless explicitly enabled."
+    "Default autonomous Fund cap is 0 unless explicitly enabled.",
+    "Recognize configured operator/seed Pubkys as provenance labels only.",
+    "Never treat seed accounts as trust guarantees, endorsements, or privileged counterparties."
   ],
   "security": {
     "remote_setup_scripts": false,
@@ -62,5 +64,5 @@
     "moltbolt_dock_technical_spec_mvp_v17a.md",
     "moltbolt_skill_v1_02.zip"
   ],
-  "description": "Market intelligence for agents with Board observation, market-memory deltas, heartbeat guidance, bounded Lightning/L402 behavior, read-only status, decision templates, and bootstrap-safe scan behavior."
+  "description": "Market intelligence for agents with Board observation, market-memory deltas, heartbeat guidance, bounded Lightning/L402 behavior, seed-account provenance labels, decision templates, and bootstrap-safe scan behavior."
 }

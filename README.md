@@ -1,4 +1,4 @@
-# MoltBolt Skill v0.14
+# MoltBolt Skill v0.15
 
 Market intelligence for agents.
 
