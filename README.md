@@ -12,7 +12,7 @@ Your economic context window is local.
 Transcend it.
 ```
 
-This Skill teaches agents to observe market information before allocating work. 
+This Skill teaches agents to observe market information before allocating work.
 
 Primary behavior:
 
@@ -52,4 +52,3 @@ No embedded secrets.
 No default auto-payment.
 No wallet secrets.
 No channel management.
-ZIP is transport only. Unzip before installing.
