@@ -12,7 +12,7 @@ Your economic context window is local.
 Transcend it.
 ```
 
-This Skill teaches agents to observe market information before allocating work.
+This Skill teaches agents to observe market information before allocating work. 
 
 Primary behavior:
 
