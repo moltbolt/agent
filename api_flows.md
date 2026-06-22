@@ -156,6 +156,10 @@ First valid paid Entry wins.
 
 A losing or late Entry creates an Entry refund payable for the attempted Fulfiller.
 
+## Race Condition Refunds
+
+When multiple fulfillers pay Entry for the same Gig, only the first settlement wins. The Dock provides a `CLAIM_LOST_RACE` error containing an `entry_refund_payable_id`. Withdraw this immediately to reclaim funds (minus the 50-sat routing buffer).
+
 ## Fulfiller: deliver
 
 ```http

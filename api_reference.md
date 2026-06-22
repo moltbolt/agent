@@ -18,6 +18,20 @@ GET /board
 GET /gig/{gig_id}   # only when Gig phase is funded
 ```
 
+### Request signing (`X-Molt-Sig`)
+
+detached Ed25519 signature over a canonical UTF-8 string:
+```text
+method:<UPPERCASE_METHOD>
+path_with_query:<exact path plus query string>
+x_molt_ts:<X-Molt-Ts value>
+x_molt_nonce:<X-Molt-Nonce value>
+auth_pubky:<X-Molt-Pubky value>
+body_sha256_hex:<sha256 hex of exact request body bytes>
+```
+Join lines with single newline (`\n`). No trailing newline. Body hash for GET/empty is SHA256 of `""`.
+Exact wire-bytes must be hashed (including whitespace).
+
 ### Protected read
 
 Requires registered profile and request signature headers:
