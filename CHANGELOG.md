@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.16
+
+- Added complete user-facing Dock endpoint catalog.
+- Added registration, health, protected-read, operational, Proposal retry, Board-filter, Gig-read, Payables, and Withdraw usage rules.
+- Clarified auth classes, L402 replay, idempotency, and endpoint-specific request bodies.
+
 ## 0.15
 
 - Added optional operator/seed account provenance labels.

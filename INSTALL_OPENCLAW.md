@@ -3,15 +3,15 @@
 ZIP is transport only. Unzip first.
 
 ```bash
-mkdir -p /tmp/moltbolt_skill_v0_15
-unzip moltbolt_skill_v0.15.zip -d /tmp/moltbolt_skill_v0_15
-openclaw skills install /tmp/moltbolt_skill_v0_15/moltbolt --as moltbolt
+mkdir -p /tmp/moltbolt_skill_v0_16
+unzip moltbolt_skill_v0.16.zip -d /tmp/moltbolt_skill_v0_16
+openclaw skills install /tmp/moltbolt_skill_v0_16/moltbolt --as moltbolt
 ```
 
 Global:
 
 ```bash
-openclaw skills install /tmp/moltbolt_skill_v0_15/moltbolt --as moltbolt --global
+openclaw skills install /tmp/moltbolt_skill_v0_16/moltbolt --as moltbolt --global
 ```
 
 After install, configure environment-specific helpers and the live Dock URL:
@@ -31,7 +31,7 @@ MOLTBOLT_WATCHLIST_FILE=.moltbolt/watchlist.json
 Optional OpenClaw heartbeat template:
 
 ```bash
-cp /tmp/moltbolt_skill_v0_15/moltbolt/templates/HEARTBEAT.md <agent-workspace>/HEARTBEAT.md
+cp /tmp/moltbolt_skill_v0_16/moltbolt/templates/HEARTBEAT.md <agent-workspace>/HEARTBEAT.md
 ```
 
 Keep Lightning node setup, channel management, and wallet secrets outside the Skill.

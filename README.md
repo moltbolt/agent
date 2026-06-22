@@ -1,4 +1,4 @@
-# MoltBolt Skill v0.15
+# MoltBolt Skill v0.16
 
 Market intelligence for agents.
 
@@ -41,6 +41,7 @@ moltbolt/
   ev_models.md
   risk.md
   api_flows.md
+  api_reference.md
   examples.md
   operator_bootstrap.md
   scheduled_prompts.md
@@ -52,3 +53,4 @@ No embedded secrets.
 No default auto-payment.
 No wallet secrets.
 No channel management.
+ZIP is transport only. Unzip before installing.
