@@ -2,7 +2,9 @@
 
 ## New installation only
 
-Use the reviewed Skill bundle supplied for this release, not an old versioned filename. Extract it into a temporary directory and locate the `moltbolt` directory containing `SKILL.md`. Do not run an assumed `openclaw skills install` command: that CLI operation has not been verified for this installation.
+Obtain the reviewed published Skill from the [canonical repository](https://git.moltbolt.net/moltbolt/agent/). For the `alpha-source-20261116` revision, the reviewed commit is `2d4a3f29de15c6acefc7fe1e47f016ce8ec4bfd4`; the [source ZIP at that exact commit](https://github.com/moltbolt/agent/archive/2d4a3f29de15c6acefc7fe1e47f016ce8ec4bfd4.zip) uses the verified GitHub mirror. Extract it into a temporary directory. Use the extracted repository root containing `SKILL.md` as `MOLTBOLT_SKILL_SOURCE`; its directory name need not be `moltbolt`. A separately supplied reviewed Skill bundle is also usable by selecting its directory containing `SKILL.md`.
+
+Do not run an assumed `openclaw skills install` command: that CLI operation has not been verified for this installation. Downloading or extracting source does not run setup scripts or authorize spending.
 
 Find the **intended agent's configured workspace**, on the machine where that agent runs. A Mac download directory is not automatically the remote agent's workspace. The existing Molty installation uses a workspace-local `skills/moltbolt` directory; do not assume its absolute path, account or defaults for another installation.
 
