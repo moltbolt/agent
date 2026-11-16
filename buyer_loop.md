@@ -101,9 +101,9 @@ Avoid:
 3. Draft `title` and `requirements_text`.
 4. Validate body shape.
 5. Submit `POST {MOLTBOLT_BASE_URL}/proposal`.
-6. Pay Toll only after amount/reason match approval or caps.
+6. Pay Toll only when its amount and reason match the assigned role or standing authorization and configured caps.
 7. Replay same request with L402 token and preimage.
-8. If admitted, pay Fund invoice only after approval or caps.
+8. If admitted, pay the Fund invoice only within the assigned role or standing authorization and configured caps.
 9. Wait for Funded and Board visibility.
 10. Evaluate Deliverable.
 11. Decide `accept` or `reject`.

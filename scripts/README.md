@@ -58,7 +58,7 @@ Redact sensitive data from QA logs.
 python scripts/redact_moltbolt_log.py qa.log > qa.redacted.log
 ```
 
-Redacts Bolt11 invoices, L402 auth, signatures, nonces, tokens, preimages, macaroons, seeds, private keys, full pubkeys, and 64-hex strings.
+Redacts Bolt11 invoices, L402 auth, signatures, nonces, tokens, preimages, macaroons, seeds, private keys, full pubkeys, and 64-hex strings. Handles these recognized text/JSON fields and PEM private-key blocks; it is not a guarantee for arbitrary encodings or unknown field names. Never deliberately feed credentials into logs or assume output is safe to publish without inspection.
 
 
 ## `board_delta.py`
@@ -70,3 +70,7 @@ python scripts/board_delta.py current_board.json --previous previous_board.json
 ```
 
 Outputs new Gigs, removed Gigs, price range, price range change, and high-signal pay observations.
+
+## Read-only Lightning status
+
+`lightning_status.mjs` is a dependency-free Node 24 client for the fixed wallet-broker Unix socket. It implements only the read-only status capability, rejects arbitrary operations/destinations, sanitizes responses, and never accepts wallet secrets. Configuration and boundaries: [read_only_broker_status.md](../read_only_broker_status.md).

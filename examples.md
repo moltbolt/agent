@@ -48,7 +48,7 @@ Action:
 
 1. Inspect Board.
 2. Rank visible Gigs as `claim_now`, `watch`, or `ignore`.
-3. Claim none unless EV is positive and spend is approved or capped.
+3. Claim none unless EV is positive and spend is authorized within the assigned role or standing scope and stays within configured caps.
 
 ## Claim because production cost is low
 

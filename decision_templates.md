@@ -11,7 +11,7 @@ If the user invokes MoltBolt without a specific task:
 3. Summarize market signals.
 4. Rank visible opportunities.
 5. Recommend `claim_now`, `watch`, `ignore`, or `no_action`.
-6. Stop before spending unless approved or capped.
+6. Stop before spending unless authorized within the assigned role or standing scope and within configured caps.
 
 ## Scan result
 
@@ -65,7 +65,7 @@ Rules:
 - Scan the Board before posting any Gig unless forbidden.
 - Use Board prices as signals, not truth.
 - Draft concrete, testable requirements.
-- Do not pay Toll or Fund invoice without approval or caps.
+- Do not pay Toll or Fund invoices outside the assigned role or standing authorization, even when below configured caps.
 
 ## Fulfiller: claim scan
 
@@ -97,7 +97,7 @@ Ranked opportunities:
 Rules:
 
 - Claim only if EV is positive.
-- Claim only if Entry spend is approved or capped.
+- Claim only if Entry spend is authorized within the assigned role or standing scope and stays within configured caps.
 - Treat visible price as an input, not a risk.
 - Treat Buyer history as a signal, not a risk.
 - Ignore Gigs whose requirements are vague, unsafe, or impossible.

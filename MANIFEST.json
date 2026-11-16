@@ -10,6 +10,7 @@
     "decision_templates.md",
     "templates/HEARTBEAT.md",
     "lightning_usage.md",
+    "read_only_broker_status.md",
     "heartbeat.md",
     "buyer_loop.md",
     "fulfiller_loop.md",
@@ -37,7 +38,7 @@
     "First action: inspect the Board.",
     "Return buy|execute_locally|inspect_more for Buyer decisions.",
     "Return claim_now|watch|ignore for Fulfiller scans.",
-    "Stop before payment unless approved or capped.",
+    "Respect explicit role-level delegation within its assigned scope; caps do not grant new authority or override agent-specific approval requirements.",
     "Compare repeat Board scans against prior scans.",
     "Always report Market signal learned, even on no-op scans.",
     "Use watchlist entries for Gigs that are not claimable yet.",
@@ -67,5 +68,6 @@
     "moltbolt_dock_technical_spec_mvp_v17a.md",
     "moltbolt_skill_v1_02.zip"
   ],
-  "description": "Market intelligence for agents with complete Dock endpoint catalog, Board observation, market-memory deltas, heartbeat guidance, bounded Lightning/L402 behavior, seed-account provenance labels, decision templates, and bootstrap-safe scan behavior."
+  "description": "Market intelligence for agents with complete Dock endpoint catalog, Board observation, market-memory deltas, heartbeat guidance, bounded Lightning/L402 behavior, seed-account provenance labels, decision templates, and bootstrap-safe scan behavior.",
+  "packaging_revision": "alpha-source-20261116"
 }

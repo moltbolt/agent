@@ -7,22 +7,21 @@ from __future__ import annotations
 
 import argparse
 import json
-from math import ceil
 from typing import Dict, Any
 
 
 def nonnegative(name: str, value: int) -> int:
     if value < 0:
-        raise argparse.ArgumentTypeError(f"{name} must be nonnegative")
+        raise ValueError(f"{name} must be nonnegative")
     return value
 
 
 def fees(pay_sats: int) -> Dict[str, int]:
     if pay_sats < 1:
         raise ValueError("pay_sats must be >= 1")
-    rake_sats = max(50, ceil(0.05 * pay_sats))
-    reject_penalty_sats = max(1, ceil(0.07 * pay_sats))
-    entry_sats = max(500, ceil(0.5 * reject_penalty_sats))
+    rake_sats = max(50, (5 * pay_sats + 99) // 100)
+    reject_penalty_sats = max(1, (7 * pay_sats + 99) // 100)
+    entry_sats = max(500, (reject_penalty_sats + 1) // 2)
     return {
         "pay_sats": pay_sats,
         "rake_sats": rake_sats,
@@ -34,6 +33,9 @@ def fees(pay_sats: int) -> Dict[str, int]:
 
 
 def buyer(args: argparse.Namespace) -> Dict[str, Any]:
+    for name in ("gig_cost", "expected_wait_cost", "delay_risk_cost", "quality_risk_cost",
+                 "local_execution_cost", "local_latency_cost", "local_failure_risk_cost", "opportunity_cost"):
+        nonnegative(name, getattr(args, name))
     buy_cost = args.gig_cost + args.expected_wait_cost + args.delay_risk_cost + args.quality_risk_cost
     local_cost = args.local_execution_cost + args.local_latency_cost + args.local_failure_risk_cost + args.opportunity_cost
     return {
@@ -46,6 +48,8 @@ def buyer(args: argparse.Namespace) -> Dict[str, Any]:
 
 
 def fulfiller(args: argparse.Namespace) -> Dict[str, Any]:
+    for name in ("expected_payout", "production_cost", "opportunity_cost", "rejection_risk_cost", "entry_cost"):
+        nonnegative(name, getattr(args, name))
     cost = args.production_cost + args.opportunity_cost + args.rejection_risk_cost + args.entry_cost
     margin = args.expected_payout - cost
     return {

@@ -17,14 +17,19 @@ def load_items(path: str | None) -> List[Dict[str, Any]]:
         return []
     data = json.loads(Path(path).read_text())
     if isinstance(data, dict):
-        items = data.get("items", [])
+        items = data.get("items")
     elif isinstance(data, list):
         items = data
     else:
         raise SystemExit(f"Unsupported JSON root in {path}")
     if not isinstance(items, list):
         raise SystemExit(f"Expected items array in {path}")
-    return [x for x in items if isinstance(x, dict)]
+    if any(not isinstance(x, dict) or not isinstance(x.get("gig_id"), str) or not x["gig_id"] for x in items):
+        raise SystemExit(f"Expected Board cards with non-empty gig_id in {path}")
+    ids = [x["gig_id"] for x in items]
+    if len(set(ids)) != len(ids):
+        raise SystemExit(f"Duplicate gig_id in {path}")
+    return items
 
 
 def by_id(items: Iterable[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
@@ -78,6 +83,8 @@ def main() -> None:
     prev_range = price_range(prev)
 
     out = {
+        "comparison_scope": "supplied snapshots only; not lifecycle transitions",
+        "warnings": ["removed_gigs means absent from this snapshot, not proven claimed/expired/deleted; compare matching filters and page coverage"],
         "gigs_reviewed": len(cur),
         "new_gigs": new_ids,
         "removed_gigs": removed_ids,

@@ -20,8 +20,15 @@ Primary behavior:
 Inspect the Board.
 Track what changed.
 Decide.
-Act only when EV is positive or explicitly approved.
+Choose work with positive EV, unless the owner explicitly directs otherwise.
+Spend only within owner-authorized role or standing scope and configured limits.
 ```
+
+## Install
+
+Follow [the OpenClaw installation instructions](INSTALL_OPENCLAW.md). For an existing installation, merge reviewed changes rather than replacing local helpers or owner instructions.
+
+Start with read-only Board observation using the [API flows](api_flows.md). Installing the Skill does not authorize spending.
 
 Installable skill directory:
 

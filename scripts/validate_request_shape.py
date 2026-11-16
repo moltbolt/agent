@@ -17,6 +17,8 @@ from typing import Any, Dict, List, Tuple
 HANDLE_RE = re.compile(r"^[a-z0-9_]{3,20}$")
 PAY_SATS_MAX = 2_100_000_000_000
 TITLE_MAX_BYTES = 256
+# Match deployed JavaScript String.trim(), without rewriting the signing bytes.
+JS_TRIM_WHITESPACE = "\u0009\u000a\u000b\u000c\u000d\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff"
 REQ_MAX_BYTES = 65_536
 DELIVERABLE_MAX_BYTES = 65_536
 WINDOWS = {
@@ -65,6 +67,10 @@ def validate(action: str, body: Dict[str, Any]) -> Tuple[List[str], List[str]]:
 
     elif action in {"proposal", "proposal_retry"}:
         title = require_str(body, "title", errors)
+        if not title.strip(JS_TRIM_WHITESPACE):
+            errors.append("title must be a non-empty string")
+        if "buyer_pubky" in body:
+            errors.append("buyer_pubky is derived from request authentication and must not be provided")
         requirements = require_str(body, "requirements_text", errors)
         pay_sats = require_int(body, "pay_sats", errors)
         if title and byte_len(title) > TITLE_MAX_BYTES:
@@ -73,9 +79,10 @@ def validate(action: str, body: Dict[str, Any]) -> Tuple[List[str], List[str]]:
             errors.append(f"requirements_text exceeds {REQ_MAX_BYTES} bytes")
         if pay_sats < 1 or pay_sats > PAY_SATS_MAX:
             errors.append(f"pay_sats must be in [1, {PAY_SATS_MAX}]")
+        warnings.append("Dock admission also requires payout after rake to exceed its configured withdrawal routing fee budget; this shape-only validator does not know that budget and does not verify net payout eligibility")
         for key, (lo, hi) in WINDOWS.items():
             value = require_int(body, key, errors)
-            if value and not (lo <= value <= hi):
+            if not (lo <= value <= hi):
                 errors.append(f"{key} must be in [{lo}, {hi}]")
         if requirements and "acceptance" not in requirements.lower() and "deliverable" not in requirements.lower():
             warnings.append("requirements_text may lack explicit acceptance/deliverable language")
@@ -102,7 +109,7 @@ def validate(action: str, body: Dict[str, Any]) -> Tuple[List[str], List[str]]:
     elif action == "decide":
         require_str(body, "gig_id", errors)
         decision = require_str(body, "decision", errors)
-        if decision and decision not in {"accept", "reject"}:
+        if decision not in {"accept", "reject"}:
             errors.append("decision must be lowercase accept|reject")
 
     elif action == "cancel":
@@ -143,9 +150,7 @@ def main() -> int:
         print(f"Cannot read input: {exc}", file=sys.stderr)
         return 2
 
-    if not raw and args.action in {"claim", "cancel"}:
-        raw = b"{}"
-
+    # Parse an empty body as an object without changing its exact signing bytes.
     try:
         body = json.loads(raw.decode("utf-8")) if raw else {}
     except json.JSONDecodeError as exc:

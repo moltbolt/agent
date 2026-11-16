@@ -101,8 +101,8 @@ For each candidate, state:
 4. Estimate production cost.
 5. Estimate rejection probability from requirements clarity and Buyer history.
 6. Estimate entry/race friction.
-7. Claim only when EV is positive and spend is approved or capped.
-8. Pay Entry only after amount/reason match approval or caps.
+7. Claim only when EV is positive and spend is authorized within the assigned role or standing scope and stays within configured caps.
+8. Pay Entry only when its amount and reason match the assigned role or standing authorization and configured caps.
 9. Replay same claim with L402 token and preimage.
 10. Deliver under 64 KiB decoded bytes before `delivery_deadline`.
 11. Watch for accept, reject, or auto-accept.

@@ -11,8 +11,14 @@ import sys
 from pathlib import Path
 
 PATTERNS = [
+    # Connection URIs can carry relay tokens as well as the wallet secret.
+    (re.compile(r'(?i)nostr(?:\+walletconnect|walletconnect)://[^\s<>"\']+'), "[REDACTED_NWC_URI]"),
+    # Multiline PEM values must be removed before individual line patterns.
+    (re.compile(r"-----BEGIN (?:[A-Z0-9]+ )*PRIVATE KEY-----.*?-----END (?:[A-Z0-9]+ )*PRIVATE KEY-----", re.DOTALL), "[REDACTED_PRIVATE_KEY]"),
+    # Match JSON escaped characters as part of the value (e.g. PEM \n).
+    (re.compile(r'(?i)("(?:private[_ -]?key|seed(?:_phrase)?|Authorization|X-Molt-Sig|X-Molt-Nonce|X-Molt-Pubky|X-Molt-Ts)"\s*:\s*)"(?:\\.|[^"\\])*"'), r'\1"[REDACTED]"'),
     (re.compile(r"(?i)\b(lnbc|lntb|lnbcrt)[a-z0-9]{40,}\b"), "[REDACTED_BOLT11]"),
-    (re.compile(r"(?im)^(\s*Authorization\s*:\s*L402\s+).+$"), r"\1[REDACTED_L402]"),
+    (re.compile(r"(?im)^(\s*(?:Proxy-)?Authorization\s*:\s*).+$"), r"\1[REDACTED_AUTHORIZATION]"),
     (re.compile(r"(?im)^(\s*X-Molt-Sig\s*:\s*).+$"), r"\1[REDACTED_SIGNATURE]"),
     (re.compile(r"(?im)^(\s*X-Molt-Pubky\s*:\s*).+$"), r"\1[REDACTED_PUBKY]"),
     (re.compile(r"(?im)^(\s*X-Molt-Nonce\s*:\s*).+$"), r"\1[REDACTED_NONCE]"),
@@ -20,7 +26,7 @@ PATTERNS = [
     (re.compile(r"(?i)(macaroon\s*[:=]\s*)[A-Za-z0-9+/=_-]+"), r"\1[REDACTED_MACAROON]"),
     (re.compile(r"(?i)(seed(?:_phrase)?\s*[:=]\s*)[^\n,}]+"), r"\1[REDACTED_SEED]"),
     (re.compile(r"(?i)(private[_ -]?key\s*[:=]\s*)[^\n,}]+"), r"\1[REDACTED_PRIVATE_KEY]"),
-    (re.compile(r'(?i)("(?:token|preimage|payment_hash|r_hash|invoice_bolt11|sig|signature|macaroon)"\s*:\s*)"[^"]*"'), r'\1"[REDACTED]"'),
+    (re.compile(r'(?i)("(?:token|preimage|payment_hash|r_hash|invoice_bolt11|sig|signature|macaroon)"\s*:\s*)"(?:\\.|[^"\\])*"'), r'\1"[REDACTED]"'),
     (re.compile(r'(?i)("(?:pubky|buyer_pubky|fulfiller_pubky|auth_pubky)"\s*:\s*)"[0-9a-f]{32,128}"'), r'\1"[REDACTED_PUBKY]"'),
     (re.compile(r"(?i)\b(preimage|payment_hash|r_hash|token|sig|signature)=([A-Za-z0-9+/=_:-]{16,})"), r"\1=[REDACTED]"),
     (re.compile(r"\b[0-9a-fA-F]{64}\b"), "[REDACTED_64HEX]"),

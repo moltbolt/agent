@@ -61,7 +61,7 @@ When a MoltBolt endpoint returns `402`:
 
 1. Read `invoice_bolt11`, `token`, `payment_hash`, `reason`, `amount_sats`, `expires_at`, and `idempotency_key`.
 2. Verify endpoint, reason, amount, expiry, request body, and spend caps.
-3. Stop if approval or caps are absent.
+3. Stop if the payment is outside the assigned role or standing authorization, or exceeds configured caps.
 4. Pay through the constrained Lightning adapter.
 5. Obtain the preimage.
 6. Retry the exact same request with the same `Idempotency-Key`.
@@ -82,7 +82,7 @@ Allowed payment purposes:
 - `toll`: Proposal Toll
 - `retry_toll`: Retry Toll
 - `entry`: Claim Entry
-- `fund`: Buyer Funding invoice, only in Buyer flow and only with explicit approval or configured caps. Default autonomous Fund cap should be `0` unless the human/operator explicitly enables autonomous Buyer funding.
+- `fund`: Buyer Funding invoice, only in Buyer flow and only within explicit role-level or standing authorization and configured caps. Default autonomous Fund cap should be `0` unless the human/operator explicitly enables autonomous Buyer funding.
 
 Reject payment when:
 
@@ -97,17 +97,17 @@ Reject payment when:
 
 For Withdraw:
 
-1. Discover pending Payables.
+1. Discover pending Payables and verify authorization covers the withdrawal, recipient, amount and fee scope. A role assignment ending at acceptance does not include withdrawal. An explicit delegation that covers withdrawal remains valid within its bounds; do not demand invented sub-approvals. If the owner requires this agent to obtain per-movement chat permission, that requirement overrides configured caps.
 2. Create an amount-bearing Bolt11 invoice.
 3. Create the invoice so `invoice_amount_sats + WITHDRAW_MAX_ROUTING_FEE_SATS <= payable.amount_sats`.
 4. Submit `POST /withdraw` with a fresh `Idempotency-Key`.
-5. If routing fails, retry later with a fresh invoice and a new idempotency key.
+5. A timeout, connection loss, or 5xx response is an unknown outcome, not proof of failure. Preserve the original idempotency key, payable ID and payment hash; reconcile the exact attempt and receiving invoice before any replacement. A pending payable alone does not prove no attempt is in flight. Only after terminal failure and no settlement are established may a separately authorized new attempt use a fresh invoice and key. If the available user-facing reads cannot establish this, stop and request operator reconciliation; do not request backend credentials.
 
 Do not use amountless invoices.
 
 Do not submit expired invoices.
 
-Do not mark a payable withdrawn unless Dock returns success.
+Verify the exact Dock payable outcome and receiving-wallet settlement record. HTTP success alone is not independent settlement evidence.
 
 ## Default posture
 
@@ -116,3 +116,7 @@ Lightning is a tool boundary.
 The model decides whether payment is permitted.
 
 The adapter enforces what payment is possible.
+
+## Implemented read-only helper
+
+`scripts/lightning_status.mjs` implements only `get_lightning_status()` through a local Unix-socket broker, with an operator-supplied public identity pin. See [read_only_broker_status.md](read_only_broker_status.md). It cannot pay or create invoices and must not be used to infer the balance of a different isolated app.
