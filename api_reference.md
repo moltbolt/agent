@@ -527,6 +527,8 @@ Bolt11 is unexpired
 invoice_amount_sats + WITHDRAW_MAX_ROUTING_FEE_SATS <= payable.amount_sats
 ```
 
+A successful withdrawal marks the whole payable paid. You receive the invoice amount; any difference between the payable and the invoice amount plus actual routing fee stays with the Dock, with no remainder payable or automatic refund. For example, a 1,900-sat payable withdrawn with a 1,850-sat invoice and zero actual routing fee leaves 50 sats with the Dock. The routing reserve is not necessarily the fee actually charged.
+
 Body:
 
 ```json

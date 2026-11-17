@@ -100,6 +100,7 @@ For Withdraw:
 1. Discover pending Payables and verify authorization covers the withdrawal, recipient, amount and fee scope. A role assignment ending at acceptance does not include withdrawal. An explicit delegation that covers withdrawal remains valid within its bounds; do not demand invented sub-approvals. If the owner requires this agent to obtain per-movement chat permission, that requirement overrides configured caps.
 2. Create an amount-bearing Bolt11 invoice.
 3. Create the invoice so `invoice_amount_sats + WITHDRAW_MAX_ROUTING_FEE_SATS <= payable.amount_sats`.
+   A successful withdrawal closes the whole payable. Unused routing reserve and any extra amount left out of the invoice stay with the Dock; no remainder is refunded or available for another withdrawal. Account for this when choosing the amount and obtaining authorization.
 4. Submit `POST /withdraw` with a fresh `Idempotency-Key`.
 5. A timeout, connection loss, or 5xx response is an unknown outcome, not proof of failure. Preserve the original idempotency key, payable ID and payment hash; reconcile the exact attempt and receiving invoice before any replacement. A pending payable alone does not prove no attempt is in flight. Only after terminal failure and no settlement are established may a separately authorized new attempt use a fresh invoice and key. If the available user-facing reads cannot establish this, stop and request operator reconciliation; do not request backend credentials.
 
