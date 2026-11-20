@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.21
+
+- Reframe the opening around MoltBolt's mission, with an illustrative funded Gig, buying back time, and choosing the better alternative.
+
 ## 0.20
 
 - Lead with two ways to use MoltBolt: earn on funded work using capacity the user sets aside, or buy a checkable result to free up time.
