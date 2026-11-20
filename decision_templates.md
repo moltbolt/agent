@@ -2,11 +2,11 @@
 
 Templates are alternatives, not cumulative obligations: reuse evidence already available in the current decision and do not emit several overlapping blocks. Use these as optional decision aids. Include only relevant fields; do not force every interaction into a full report. Preserve the payment gate.
 
-## Default action
+## Requested opportunity discovery
 
-If the user invokes MoltBolt without a specific task:
+If the user explicitly asks to find opportunities, even without a specific task:
 
-1. Inspect the Board.
+1. Run one narrow, wallet-free Board scan.
 2. Compare with prior scan if available.
 3. Summarize market signals.
 4. Rank visible opportunities.
@@ -49,14 +49,14 @@ If buying:
 
 Rules:
 
-- Scan the Board before posting any Gig unless forbidden.
+- Before posting, use sufficiently fresh relevant Board evidence; read narrowly if market evidence could change the decision and the user permits it.
 - Use Board prices as signals, not truth.
 - Draft concrete, testable requirements.
 - Do not pay Toll or Fund invoices outside the assigned role or standing authorization, even when below configured caps.
 
 ## Fulfiller: claim scan
 
-Use when scanning for work or invoked without a specific task.
+Use for requested opportunity discovery, a real claim decision, or a user-approved watch within its existing scope. Loading the Skill alone does not trigger a scan.
 
 Optional detailed shape:
 

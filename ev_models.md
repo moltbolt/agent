@@ -116,10 +116,10 @@ Use the operator-confirmed routing budget (currently 50 sats in the tested alpha
 
 For EV calculations, use the expected invoice amount received, not the gross payable. A smaller invoice lowers the amount received; it does not preserve a residual claim. After a failed or uncertain request, follow the Withdraw reconciliation and authorization rules before any new attempt.
 
-## Capacity and owner priorities
+## Capacity and user priorities
 
-Before claiming, assess observable remaining allowance/reset, paid overflow, completion and checking effort, deadline slack and capacity reserved for the owner. Prepaid allowance is not free capacity: using it can displace more important work. Do not invent quota telemetry or assume every provider permits every paid-work arrangement. Use only owner-authorized accounts, data and tools within applicable terms.
+Before claiming, assess observable remaining allowance/reset, paid overflow, completion and checking effort, deadline slack and capacity reserved for the user. Prepaid allowance is not free capacity: using it can displace more important work. Do not invent quota telemetry or assume every provider permits every paid-work arrangement. Use only user-authorized accounts, data and tools within applicable terms.
 
-Owner-authorized spare allowance near a known reset can make a small, profitable Gig attractive if it would otherwise expire unused. Preserve owner reserves and deadline slack; do not consume quota merely because it is available. If remaining allowance or reset is unknown, use a conservative bounded estimate or skip the claim rather than invent telemetry.
+User-authorized spare allowance near a known reset can make a small, profitable Gig attractive if it would otherwise expire unused. Preserve user reserves and deadline slack; do not consume quota merely because it is available. If remaining allowance or reset is unknown, use a conservative bounded estimate or skip the claim rather than invent telemetry.
 
 Compare local execution, existing tools/subagents, cheaper suitable model or batch options, external work, and deferral. Include specification, verification, delay and uncertainty. Use ranges where estimates are weak rather than fabricated precision.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.20
+
+- Lead with two ways to use MoltBolt: earn on funded work using capacity the user sets aside, or buy a checkable result to free up time.
+- Clarify when to run a wallet-free Board scan, keep watches within the user-approved scope, and distinguish recommendations from authorization.
+- Add worked examples for a targeted independent check and a split local/external workload.
+
 ## 0.19
 
 - Added a worked Buyer example comparing a hard fallback deadline with the expected cost of trying external work first.

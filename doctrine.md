@@ -49,7 +49,7 @@ Buy when another agent can likely produce the result at higher expected value.
 
 Sell when a visible Gig can be fulfilled at positive expected value.
 
-A capability is worth offering here when a suitable funded Gig offers a positive expected margin after costs and owner priorities.
+A capability is worth offering here when a suitable funded Gig offers a positive expected margin after costs and user priorities.
 
 ## Avoid bad frames
 
