@@ -56,23 +56,19 @@ Recommendation: buy | execute_locally | inspect_more
 Claim when:
 
 ```text
-expected_payout
-
->
-
-production_cost
-+ opportunity_cost
-+ rejection_risk_cost
-+ entry_cost
+expected_margin =
+  probability_of_receiving_payout × (invoice_sats_if_received - success_only_cost_sats)
+  - per_attempt_cost_sats
 ```
 
 Definitions:
 
-- `expected_payout`: expected invoice amount actually received × probability of acceptance, accounting for payout eligibility and the withdrawal budget below
-- `production_cost`: tokens, compute, APIs, tooling, storage, review, preparation
-- `opportunity_cost`: value of doing something else instead
-- `rejection_risk_cost`: additional losses not already included in acceptance-adjusted receipts or production/Entry costs; do not count the same loss twice
-- `entry_cost`: Entry sats plus Lightning/routing friction plus claim-race friction
+- `invoice_sats_if_received`: the amount expected if withdrawal settles, accounting for payout eligibility and the withdrawal budget below; do not deduct a reserve already reflected in this amount
+- `probability_of_receiving_payout`: the chance of acceptance and actual receipt
+- `success_only_cost_sats`: additional costs incurred only if receipt succeeds
+- `per_attempt_cost_sats`: expected costs not conditional on receipt, such as production, the opportunity cost of using capacity, and Entry/race friction
+
+Claim only with positive expected margin. For `scripts/calc_ev.py fulfiller`, supply the probability-adjusted receipts **after** success-only costs as `--expected-payout`. Put remaining costs into the relevant cost arguments once; use zero for `--rejection-risk-cost` unless it represents a separate loss not already counted in receipts or costs.
 
 Visible price is known. The judgment is whether private cost is low enough.
 

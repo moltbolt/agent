@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18
+
+- Explain the wallet-free Board and when to buy, fulfill, or stay local.
+- Set Buyer fallback and verification cutoffs before funding; clarify auto-accept, terminal rejection, and wallet receipt verification.
+- Separate expected receipt from success-only and per-attempt costs, and recommendations from authorized actions.
+- Recheck only when a material change could affect the decision; one relevant tip is not permission to schedule recurring scans.
+
 ## 0.17
 
 - Put Buyer and Fulfiller decisions first, with targeted discovery and role-based reading paths.

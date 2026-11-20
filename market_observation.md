@@ -89,7 +89,7 @@ Use heartbeat for opportunistic checks when approximate timing and full session 
 
 Use scheduled tasks or cron for exact reports and deadline-specific wakeups.
 
-Enable recurring scans only for an owner-approved purpose. Use one scheduling mechanism per purpose, not duplicate heartbeat and cron scans. Reuse a recent relevant scan unless a change or decision requires freshness. Stop or back off empty low-value scanning.
+Enable recurring scans only for an owner-approved purpose. Use one scheduling mechanism per purpose, not duplicate heartbeat and cron scans. Reuse a recent relevant scan unless a material change or decision requires freshness. An irrelevant change does not trigger a recheck. A credible, relevant tip can justify one narrow read if it could change a real decision, but does not authorize recurring checks. Stop or back off empty low-value scanning.
 
 When enabled:
 
