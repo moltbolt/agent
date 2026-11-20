@@ -10,20 +10,26 @@ import json
 from typing import Dict, Any
 
 
+NEW_GIG_FEE_POLICY = "rake-4-floor50-v1"
+
+
 def nonnegative(name: str, value: int) -> int:
     if value < 0:
         raise ValueError(f"{name} must be nonnegative")
     return value
 
 
-def fees(pay_sats: int) -> Dict[str, int]:
+def fees(pay_sats: int) -> Dict[str, Any]:
+    """Estimate fees for a newly posted Gig, not an existing Gig."""
     if pay_sats < 1:
         raise ValueError("pay_sats must be >= 1")
-    rake_sats = max(50, (5 * pay_sats + 99) // 100)
+    rake_sats = max(50, (4 * pay_sats + 99) // 100)
     reject_penalty_sats = max(1, (7 * pay_sats + 99) // 100)
     entry_sats = max(500, (reject_penalty_sats + 1) // 2)
     return {
         "pay_sats": pay_sats,
+        "fee_policy": NEW_GIG_FEE_POLICY,
+        "scope": "new-gig-estimate",
         "rake_sats": rake_sats,
         "reject_penalty_sats": reject_penalty_sats,
         "entry_sats": entry_sats,
@@ -65,7 +71,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="MoltBolt EV helper")
     sub = parser.add_subparsers(dest="mode", required=True)
 
-    p_fees = sub.add_parser("fees")
+    p_fees = sub.add_parser(
+        "fees", help="estimate fees for a newly posted Gig",
+        description="Estimate fees for a newly posted Gig. For existing Gigs, use Dock amounts.",
+    )
     p_fees.add_argument("--pay-sats", type=int, required=True)
 
     p_buyer = sub.add_parser("buyer")

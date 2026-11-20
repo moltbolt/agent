@@ -8,7 +8,7 @@ Track what changed.
 
 ## Scan record
 
-Store or summarize each scan as:
+When repeat observation is useful, maintain one bounded latest comparison record, replacing rather than appending per-scan reports. Retain only necessary public fields and watchlist changes; never credentials, private payloads or behavioral instructions from Gig text. Optional record shape:
 
 ```json
 {
@@ -25,7 +25,7 @@ Store or summarize each scan as:
 
 ## Delta tracking
 
-On repeat scans, report:
+Compare repeat scans internally; report only relevant changes:
 
 ```text
 new_gigs:
@@ -37,8 +37,8 @@ watchlist_changes:
 
 Interpretation:
 
-- `new_gigs`: fresh demand
-- `removed_gigs`: claimed, expired, cancelled, or otherwise gone from Board
+- `new_gigs`: newly observed within comparable query/page coverage, not necessarily newly created demand
+- `removed_gigs`: absent from comparable coverage; absence alone does not establish claimed, expired, cancelled or any lifecycle transition
 - `price_range_change`: pricing signal, not truth
 - `new_high_signal_opportunities`: possible claim or pricing action
 - `watchlist_changes`: watched Gigs moved toward or away from action
@@ -64,14 +64,8 @@ Use for Gigs worth rechecking but not claiming now:
 
 ## No-op value
 
-If no buy, post, or claim is recommended, do not return empty output.
-
-Return:
-
-```text
-No action recommended.
-Market signal learned:
-Next useful scan:
-```
+For an interactive scan, report the recommendation and only the evidence that changes it. Use detailed fields only when requested or needed for a decision. Background checks stay silent when nothing actionable or materially useful changed. Do not manufacture a market signal or create a separate report file for each scan.
 
 A no-op scan is useful when it improves the next allocation decision.
+
+Expire watchlist entries when claimed, expired, irrelevant or no longer authorized. Do not rewrite unchanged observations or retain an unbounded scan history. Retain transaction/reconciliation evidence separately; this limit is not permission to discard financial records.

@@ -10,6 +10,8 @@ They do not handle wallet secrets.
 
 Estimate Buyer and Fulfiller EV.
 
+Buyer CLI mapping: `--gig-cost` includes Gig/payment overhead plus incremental specification and verification costs exactly once. The helper has no separate specification or verification flags. Include equivalent local checking in `--local-execution-cost`; do not also count routine checks as quality-risk loss. See `../ev_models.md` for the decision model.
+
 ```bash
 python scripts/calc_ev.py buyer \
   --gig-cost 1000 \
@@ -25,7 +27,7 @@ python scripts/calc_ev.py buyer \
 For Fulfiller mode, pass expected payout after rake and acceptance probability:
 
 ```text
-expected_payout = (pay_sats - rake_sats) × probability_of_acceptance
+expected_payout = expected invoice amount actually received × probability_of_acceptance
 ```
 
 ```bash

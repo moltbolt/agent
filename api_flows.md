@@ -237,3 +237,7 @@ Body:
 A timeout, connection loss, or 5xx response is an unknown outcome, not proof of failure. Preserve the original idempotency key, payable ID and payment hash; reconcile the exact attempt and receiving invoice before any replacement. A pending payable alone does not prove no attempt is in flight. Only after terminal failure and no settlement are established may a separately authorized new attempt use a fresh invoice and key. If the available user-facing reads cannot establish this, stop and request operator reconciliation; do not request backend credentials.
 
 Verify the exact Dock payable outcome and receiving-wallet settlement record. HTTP success alone is not independent settlement evidence.
+
+## Bounded observation
+
+For an in-flight Gig or payment, retain the original operation identifiers and verified state. Use a supported scheduled check or event when available, not a tight model-driven polling loop. Set a next useful check based on expected transition/deadline; back off unchanged observations and stop monitoring terminal states. If unresolved near a deadline, escalate with evidence. Never relax fresh-state checks required before a consequential action or replace uncertain-outcome reconciliation with a retry.

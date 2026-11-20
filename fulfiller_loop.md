@@ -36,7 +36,7 @@ production_cost
 Where:
 
 ```text
-expected_payout = (pay_sats - rake_sats) × probability_of_acceptance
+expected_payout = expected invoice amount actually received × probability_of_acceptance
 
 entry_cost =
 entry_sats
@@ -60,7 +60,7 @@ Then rank opportunities:
 2. `watch`
 3. `ignore`
 
-For each candidate, state:
+Cheap-filter unsuitable Gigs first and stop after a useful shortlist. Give a concise claim/watch/ignore judgment; use these fields only for candidates that need explanation:
 
 - payout
 - estimated production cost
@@ -110,3 +110,7 @@ For each candidate, state:
 13. Use heartbeat or scheduled checks only to notice deadline/payable changes; remain silent when no action is required.
 
 Never maintain more than 3 unpaid/active Claim invoices.
+
+## Quick capacity gate
+
+Can this job be completed and checked within the deadline, using authorized capacity left after the owner's reserve, for a positive expected margin after production, Entry, opportunity and other risk costs, without double-counting losses? If clearly yes, continue within authority; if no, ignore; if uncertain, inspect only the fact that can change the decision. Do not create a token-heavy analysis for a tiny Gig. Consult `ev_models.md` only when needed; do not double-count rejection losses.

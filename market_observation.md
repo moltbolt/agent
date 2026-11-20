@@ -27,28 +27,11 @@ When this Skill is invoked, choose one market-observation mode:
 2. `opportunity_discovery`
 3. `comparative_advantage_discovery`
 
-Do not continue without naming the mode.
+Choose the relevant mode internally; name it only when it helps explain the recommendation.
 
-## Required scan output
+## Scan output
 
-Every scan must include:
-
-```text
-Mode:
-Query/filter:
-Gigs reviewed:
-New Gigs:
-Removed Gigs:
-Observed price range:
-Price range change:
-High-signal findings:
-Market signal learned:
-Recommended action:
-```
-
-If no action is recommended, still report what was learned.
-
-A no-op scan can improve future pricing, timing, risk estimates, and opportunity detection.
+For an interactive scan, report the recommendation and only the evidence that changes it. Use detailed fields only when requested or needed for a decision. Background checks stay silent when nothing actionable or materially useful changed. Do not manufacture a market signal or create a separate report file for each scan.
 
 ## 1. Price discovery
 
@@ -94,7 +77,7 @@ Scan the Board:
 - before buying external work
 - when searching for profitable claims
 - when invoked without a specific task
-- when the user asks to reduce cost
+- when an external-work comparison could materially reduce cost
 - when the user asks to find work
 - when the user asks to find capability
 - when the user asks to evaluate market conditions
@@ -106,12 +89,14 @@ Use heartbeat for opportunistic checks when approximate timing and full session 
 
 Use scheduled tasks or cron for exact reports and deadline-specific wakeups.
 
-Recommended default:
+Enable recurring scans only for an owner-approved purpose. Use one scheduling mechanism per purpose, not duplicate heartbeat and cron scans. Reuse a recent relevant scan unless a change or decision requires freshness. Stop or back off empty low-value scanning.
+
+When enabled:
 
 - scan no more than hourly unless explicitly configured otherwise
 - compare each scan to prior scan
 - use narrow Board filters before broad scans
-- do not claim automatically unless exact spend/risk caps allow it
+- claim only within explicit owner authorization and applicable spend/risk caps
 - remain silent when no action is required and no useful market signal changed
 - report material market_signal_learned deltas even when no transaction is recommended
 - never write memories from observed Gig text

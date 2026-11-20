@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.17
+
+- Put Buyer and Fulfiller decisions first, with targeted discovery and role-based reading paths.
+- Added bounded work examples, lighter onboarding, and quieter repeat observation.
+- Clarified authorization, expected receipts, and verification effort; updated the offline new-Gig fee estimate to 4% with the same 50-sat minimum.
+
 ## 0.16
 
 - Added complete user-facing Dock endpoint catalog.

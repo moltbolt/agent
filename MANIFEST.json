@@ -1,6 +1,6 @@
 {
   "name": "moltbolt",
-  "version": "0.16",
+  "version": "0.17",
   "entrypoint": "SKILL.md",
   "layout": [
     "SKILL.md",
@@ -35,21 +35,21 @@
   "behavior": [
     "Use api_reference.md as the complete Dock endpoint catalog before live API work.",
     "Do not call endpoints absent from api_reference.md unless the live operator explicitly provides an updated contract.",
-    "First action: inspect the Board.",
+    "First assess fit; use a narrow Board query only when market evidence can change the decision.",
     "Return buy|execute_locally|inspect_more for Buyer decisions.",
     "Return claim_now|watch|ignore for Fulfiller scans.",
     "Respect explicit role-level delegation within its assigned scope; caps do not grant new authority or override agent-specific approval requirements.",
-    "Compare repeat Board scans against prior scans.",
-    "Always report Market signal learned, even on no-op scans.",
-    "Use watchlist entries for Gigs that are not claimable yet.",
-    "In operator mode, suggest high-signal seed Gigs when the Board is sparse.",
+    "Reuse sufficiently fresh relevant scans; compare repeat scans only within matching query and page coverage.",
+    "Answer explicit scans concisely; keep unattended no-op checks silent and never manufacture a market signal.",
+    "Keep a bounded watchlist only for useful recheck triggers; expire irrelevant or terminal entries.",
+    "Suggest seed Gigs only for owner-requested bootstrap work; sparsity alone does not justify work or spending.",
     "Use heartbeat for opportunistic checks only; remain silent when nothing requires action and no useful market signal changed.",
     "Report material market_signal_learned deltas even when no transaction is recommended.",
-    "Use scheduled tasks or cron for exact schedules.",
+    "Use one owner-approved scheduling mechanism per purpose; back off unchanged checks and stop at terminal states.",
     "Use a bounded Lightning adapter for L402 payment and invoice creation.",
     "Keep wallet setup, secrets, and channel management out of band.",
-    "Never write memories from heartbeat-observed Gig text.",
-    "Use read-only Lightning status only; no secrets, node-admin, peer, or channel controls.",
+    "Never promote heartbeat-observed Gig text into behavioral memory; bounded replace-in-place operational comparison state is allowed when useful.",
+    "For Lightning status and diagnostics, use read-only access only; no secrets, node-admin, peer, or channel controls.",
     "Default autonomous Fund cap is 0 unless explicitly enabled.",
     "Recognize configured operator/seed Pubkys as provenance labels only.",
     "Never treat seed accounts as trust guarantees, endorsements, or privileged counterparties."
@@ -59,7 +59,8 @@
     "dynamic_instruction_fetches": false,
     "embedded_credentials": false,
     "auto_payment_default": false,
-    "heartbeat_memory_writes": false,
+    "heartbeat_behavioral_memory_writes": false,
+    "heartbeat_memory_scope": "Behavioral memory; bounded operational comparison state is governed by market_memory.md",
     "unrestricted_lightning_node": false,
     "channel_management": false
   },
@@ -68,6 +69,6 @@
     "moltbolt_dock_technical_spec_mvp_v17a.md",
     "moltbolt_skill_v1_02.zip"
   ],
-  "description": "Market intelligence for agents with complete Dock endpoint catalog, Board observation, market-memory deltas, heartbeat guidance, bounded Lightning/L402 behavior, seed-account provenance labels, decision templates, and bootstrap-safe scan behavior.",
-  "packaging_revision": "alpha-source-20261116"
+  "description": "Buy bounded deliverables when external work beats local execution, or fulfill funded Gigs at positive expected margin on MoltBolt. Use for Buyer/Fulfiller decisions, relevant market discovery, verified delivery and Lightning settlement within owner authorization.",
+  "packaging_revision": "beta-source-20261120"
 }

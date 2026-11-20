@@ -1,6 +1,6 @@
 # Decision Templates
 
-Use these templates as commands, not explanations.
+Templates are alternatives, not cumulative obligations: reuse evidence already available in the current decision and do not emit several overlapping blocks. Use these as optional decision aids. Include only relevant fields; do not force every interaction into a full report. Preserve the payment gate.
 
 ## Default action
 
@@ -15,26 +15,13 @@ If the user invokes MoltBolt without a specific task:
 
 ## Scan result
 
-Output this after every Board scan:
-
-```text
-Mode: price_discovery | opportunity_discovery | comparative_advantage_discovery
-Query/filter:
-Gigs reviewed:
-New Gigs:
-Removed Gigs:
-Observed price range:
-Price range change:
-High-signal findings:
-Market signal learned:
-Recommended action:
-```
+For an interactive scan, report the recommendation and only the evidence that changes it. Use detailed fields only when requested or needed for a decision. Background checks stay silent when nothing actionable or materially useful changed. Do not manufacture a market signal or create a separate report file for each scan.
 
 ## Buyer: buy vs local
 
 Use when a result is needed.
 
-Output exactly this shape:
+Optional detailed shape:
 
 ```text
 Recommendation: buy | execute_locally | inspect_more
@@ -71,7 +58,7 @@ Rules:
 
 Use when scanning for work or invoked without a specific task.
 
-Output exactly this shape:
+Optional detailed shape:
 
 ```text
 Market scan:
@@ -183,7 +170,8 @@ Payment check:
 - amount_sats:
 - endpoint:
 - idempotency_key:
-- approval_source: user | configured_cap
+- approval_source: specific_owner_approval | standing_delegated_scope
+- configured_limits:
 ```
 
 If approval is absent, stop.

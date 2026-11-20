@@ -63,9 +63,9 @@ Reduce exposure when history is thin.
 
 Increase confidence when settlement history is strong.
 
-## Required risk output
+## Optional risk detail
 
-For any buy or claim recommendation, output:
+For a buy or claim recommendation, include relevant fields only when they help explain the decision:
 
 ```text
 Risks:
@@ -103,3 +103,7 @@ Controls:
 - exact L402 retry binding
 - no seed, macaroon, or unrestricted node access
 - no channel management from this Skill
+
+## Presentation
+
+Risk fields are optional decision aids, not a separate mandatory report. Reuse evidence already considered and include only risks that change the recommendation. Financial verification and authorization checks remain required.
