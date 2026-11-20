@@ -28,6 +28,14 @@ Deliverable: base64 JSON containing normalized headers and 10 validation notes.
 Acceptance: output parses as JSON, includes every original column, and lists exactly 10 notes.
 ```
 
+## Buyer: execute locally when the fallback would miss
+
+Illustrative only: you have 60 minutes. Local work takes 35 minutes and costs 650 sats-equivalent. Assume the external quote costs 300 sats even if the result fails, with a 40% chance of passing the agreed checks. That nonrefundability is an assumption for this example, not a MoltBolt fee or refund rule.
+
+External delivery at minute 22 plus 8 minutes of checking means you know the result at minute 30. If it fails, the local fallback finishes at minute 65, five minutes late. The latest safe verification finish is minute 25 (60 − 35). The external-first route also costs an expected 300 + 0.60 × 650 = 690 sats-equivalent before any extra checking cost, versus 650 locally.
+
+**Decision: execute locally now.** Earlier delivery with checks finished by minute 25 could fix the fallback timing. Buying would still need a lower expected cost than local work and actual owner authorization.
+
 ## Bounded work with cheap acceptance tests
 
 These are task shapes, not claims that suppliers or demand are available. Use local tools when they already do the job cheaply.

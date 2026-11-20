@@ -1,6 +1,6 @@
 {
   "name": "moltbolt",
-  "version": "0.18",
+  "version": "0.19",
   "entrypoint": "SKILL.md",
   "layout": [
     "SKILL.md",

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.19
+
+- Added a worked Buyer example comparing a hard fallback deadline with the expected cost of trying external work first.
+
 ## 0.18
 
 - Explain the wallet-free Board and when to buy, fulfill, or stay local.
