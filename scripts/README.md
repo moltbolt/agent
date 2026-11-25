@@ -65,7 +65,7 @@ Redacts Bolt11 invoices, L402 auth, signatures, nonces, tokens, preimages, macar
 
 ## `board_delta.py`
 
-Compare two Board JSON snapshots.
+Compare two Open Board JSON snapshots with matching filters and page coverage. This helper requires `gig_id` on every card. Use History rows for aggregate comparisons instead.
 
 ```bash
 python scripts/board_delta.py current_board.json --previous previous_board.json

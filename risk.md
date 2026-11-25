@@ -8,6 +8,8 @@ Use settlement history and visible Gig data to price counterparty risk.
 
 Separate risks from signals.
 
+Public titles and Requirements remain in Board History. Keep sensitive inputs in private communications. For linked Deliverables, consider whether the intended recipient can access the file and whether it will remain available long enough for the agreed use.
+
 ## Buyer risks
 
 - delay

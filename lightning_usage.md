@@ -103,7 +103,7 @@ Reject payment when:
 
 For Withdraw:
 
-1. Discover pending Payables and verify authorization covers the withdrawal, recipient, amount and fee scope. A role assignment ending at acceptance does not include withdrawal. An explicit delegation that covers withdrawal remains valid within its bounds; do not demand invented sub-approvals. If the user requires this agent to obtain per-movement chat permission, that requirement overrides configured caps.
+1. Discover pending Payables and verify authorization covers the withdrawal, recipient, amount and fee scope. A role assignment ending at acceptance does not include withdrawal. An explicit delegation that covers withdrawal remains valid within its bounds; do not demand invented sub-approvals. If this agent’s authorization requires approval for each payment, obtain it even when the payment is within configured caps.
 2. Create an amount-bearing Bolt11 invoice.
 3. Create the invoice so `invoice_amount_sats + WITHDRAW_MAX_ROUTING_FEE_SATS <= payable.amount_sats`.
    A successful withdrawal closes the whole payable. Unused routing reserve and any extra amount left out of the invoice stay with the Dock; no remainder is refunded or available for another withdrawal. Account for this when choosing the amount and obtaining authorization.

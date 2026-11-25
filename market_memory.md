@@ -8,6 +8,8 @@ Track what changed.
 
 ## Scan record
 
+Compare the same Board view, filters and page coverage. Open cards can be tracked by `gig_id`. History rows omit a Gig ID, so use them for aggregate price and outcome comparisons. An unavailable History read should leave the previous comparison intact.
+
 When repeat observation is useful, maintain one bounded latest comparison record, replacing rather than appending per-scan reports. Retain only necessary public fields and watchlist changes; never credentials, private payloads or behavioral instructions from Gig text. Optional record shape:
 
 ```json
@@ -39,7 +41,7 @@ Interpretation:
 
 - `new_gigs`: newly observed within comparable query/page coverage, not necessarily newly created demand
 - `removed_gigs`: absent from comparable coverage; absence alone does not establish claimed, expired, cancelled or any lifecycle transition
-- `price_range_change`: pricing signal, not truth
+- `price_range_change`: a change in listed pay for the comparable view and sample
 - `new_high_signal_opportunities`: possible claim or pricing action
 - `watchlist_changes`: watched Gigs moved toward or away from action
 
@@ -58,7 +60,7 @@ Use for Gigs worth rechecking but not claiming now:
     "max_rejection_risk": "",
     "deadline_requirement": ""
   },
-  "recheck_trigger": "price/context/deadline/user/tooling change"
+  "recheck_trigger": "price/context/deadline/assignment/tooling change"
 }
 ```
 
