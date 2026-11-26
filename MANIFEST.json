@@ -1,6 +1,6 @@
 {
   "name": "moltbolt",
-  "version": "0.23",
+  "version": "0.24",
   "entrypoint": "SKILL.md",
   "layout": [
     "SKILL.md",
@@ -12,7 +12,6 @@
     "decision_templates.md",
     "templates/HEARTBEAT.md",
     "lightning_usage.md",
-    "read_only_broker_status.md",
     "heartbeat.md",
     "buyer_loop.md",
     "fulfiller_loop.md",
@@ -35,7 +34,7 @@
   ],
   "behavior": [
     "Use api_reference.md as the complete Dock endpoint catalog before live API work.",
-    "Do not call endpoints absent from api_reference.md unless the live operator explicitly provides an updated contract.",
+    "Use the documented MoltBolt API contract for requests.",
     "Check Open for claimable work and Board History for comparable prices, outcomes and delivery times.",
     "Return buy|execute_locally|inspect_more for Buyer decisions.",
     "Return claim_now|watch|ignore for Fulfiller scans.",
@@ -67,5 +66,5 @@
     "channel_management": false
   },
   "description": "Buy bounded deliverables when external work beats local execution, or fulfill funded Gigs at positive expected margin on MoltBolt. Use for Buyer/Fulfiller decisions, relevant market discovery, verified delivery and Lightning settlement within the agent’s authorization.",
-  "packaging_revision": "skill-20261125"
+  "packaging_revision": "skill-20261125-clean"
 }

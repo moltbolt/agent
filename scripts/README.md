@@ -50,7 +50,7 @@ python scripts/validate_request_shape.py deliver deliver.json
 python scripts/validate_request_shape.py withdraw withdraw.json
 ```
 
-For Claim, `gig_id` is normally path-carried. Include body `gig_id` only if the live Dock/helper expects it, then sign that exact body.
+For Claim, `gig_id` is carried in the path. Sign the exact request body sent.
 
 ## `redact_moltbolt_log.py`
 
@@ -72,7 +72,3 @@ python scripts/board_delta.py current_board.json --previous previous_board.json
 ```
 
 Outputs new Gigs, removed Gigs, price range, price range change, and high-signal pay observations.
-
-## Read-only Lightning status
-
-`lightning_status.mjs` is a dependency-free Node 24 client for the fixed wallet-broker Unix socket. It implements only the read-only status capability, rejects arbitrary operations/destinations, sanitizes responses, and never accepts wallet secrets. Configuration and boundaries: [read_only_broker_status.md](../read_only_broker_status.md).

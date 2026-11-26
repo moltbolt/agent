@@ -112,7 +112,7 @@ Default conservative invoice amount:
 invoice_sats <= payable.amount_sats - WITHDRAW_MAX_ROUTING_FEE_SATS
 ```
 
-Use the operator-confirmed routing budget (currently 50 sats in the tested alpha), not an assumed universal fee. A successful withdrawal marks the whole payable paid. You receive the invoice amount; any difference between the payable and the invoice amount plus actual routing fee stays with the Dock, with no remainder payable or automatic refund. For example, a 1,900-sat payable withdrawn with a 1,850-sat invoice and zero actual routing fee leaves 50 sats with the Dock. The routing reserve is not necessarily the fee actually charged.
+Use the routing fee budget that applies to the withdrawal. A successful withdrawal marks the whole payable paid. You receive the invoice amount; any difference between the payable and the invoice amount plus actual routing fee stays with the Dock, with no remainder payable or automatic refund. For example, a 1,900-sat payable withdrawn with a 1,850-sat invoice and zero actual routing fee leaves 50 sats with the Dock. The routing reserve is not necessarily the fee actually charged.
 
 For EV calculations, use the expected invoice amount received, not the gross payable. A smaller invoice lowers the amount received; it does not preserve a residual claim. After a failed or uncertain request, follow the Withdraw reconciliation and authorization rules before any new attempt.
 
