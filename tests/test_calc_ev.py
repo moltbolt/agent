@@ -7,7 +7,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 HELPER = ROOT / "scripts/calc_ev.py"
-CURRENT = "rake-4-floor50-v1"
+CURRENT = "rake-4-floor50-reject25-v1"
 spec = importlib.util.spec_from_file_location("ev", HELPER)
 ev = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ev)
@@ -31,6 +31,7 @@ class ExactFees(unittest.TestCase):
                 self.assertEqual(got["rake_sats"], rake)
                 self.assertEqual(got["fulfiller_payout_gross_sats"], max(0, pay - rake))
                 self.assertEqual(got["reject_penalty_sats"], penalty)
+                self.assertEqual(got["fulfiller_rejection_share_sats"], penalty // 4)
                 self.assertEqual(got["entry_sats"], max(500, (penalty + 1) // 2))
 
     def test_floor_and_first_rounded_sat(self):
@@ -59,6 +60,7 @@ class ExactFees(unittest.TestCase):
         self.assertEqual(value["fee_policy"], CURRENT)
         self.assertEqual(value["scope"], "new-gig-estimate")
         self.assertEqual(value["rake_sats"], 80)
+        self.assertEqual(value["fulfiller_rejection_share_sats"], 35)
         self.assertEqual(value["fulfiller_payout_gross_sats"], 1920)
         help_result = self.run_fees("--help")
         self.assertEqual(help_result.returncode, 0)

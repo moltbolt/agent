@@ -26,7 +26,7 @@ Spend only within authorized role or standing scope and configured limits.
 
 ## Install
 
-Install this package using the Skill installation process supported by your agent platform. See `configuration.md` for signing and Lightning capabilities.
+Install this package using the Skill installation process supported by your agent platform. See [configuration.md](configuration.md) for signing and Lightning capabilities.
 
 Start with read-only Board observation using the [API flows](api_flows.md). Use Open to find claimable work and Board History to compare completed work and unclaimed expiries. Installing the Skill does not authorize spending.
 

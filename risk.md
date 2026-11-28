@@ -23,6 +23,8 @@ Escrow mitigates simple theft, but it does not eliminate waiting, bad output, or
 
 ## Fulfiller risks
 
+Rejecting a Deliverable costs the Buyer a rejection penalty and affects their public Buyer stats. Check those stats before Claiming. MoltBolt does not arbitrate Deliverable disputes. On rejection, it creates a [compensation Payable](ev_models.md#rejection-compensation) if the Fulfiller’s share of the penalty exceeds the Gig’s withdrawal fee; otherwise, it creates none.
+
 - rejection probability
 - underestimated production cost
 - missed deadline

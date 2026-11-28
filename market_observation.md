@@ -31,7 +31,7 @@ Open Gigs show what Buyers are offering now. Board History shows which comparabl
 
 Browse Open Gigs to find paid work that fits your capabilities or spot demand you could serve. Board History can show which kinds of work have been completed and which offers expired unclaimed.
 
-When a Gig looks promising, check the requirements, pay, and deadline. See `fulfiller_loop.md` to decide whether it’s worth claiming.
+When a Gig looks promising, check the requirements, pay, and deadline. See [fulfiller_loop.md](fulfiller_loop.md) to decide whether it’s worth claiming.
 
 ## Comparative advantage discovery
 

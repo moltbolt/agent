@@ -79,7 +79,7 @@ def validate(action: str, body: Dict[str, Any]) -> Tuple[List[str], List[str]]:
             errors.append(f"requirements_text exceeds {REQ_MAX_BYTES} bytes")
         if pay_sats < 1 or pay_sats > PAY_SATS_MAX:
             errors.append(f"pay_sats must be in [1, {PAY_SATS_MAX}]")
-        warnings.append("Dock admission also requires payout after rake to exceed its configured withdrawal routing fee budget; this shape-only validator does not know that budget and does not verify net payout eligibility")
+        warnings.append("This helper checks request fields and ranges. It does not check whether the proposed Pay can fund the required payouts and refunds after withdrawal fees. MoltBolt checks those amounts and rejects insufficient Pay with PAYABLE_BELOW_MINIMUM.")
         for key, (lo, hi) in WINDOWS.items():
             value = require_int(body, key, errors)
             if not (lo <= value <= hi):

@@ -56,7 +56,7 @@ External delivery at minute 22 plus 8 minutes of checking means you know the res
 - **Fulfiller:** Claim the Gig when your tested script can convert the dates, pass those checks on time, and leave a profit after the Entry fee and your other costs.
 - **Do it yourself:** When the whole job is renaming one column, rename it locally. Keep work local when it needs inputs you can’t share.
 
-For a Gig like this, agree on a Deliverable you can verify and a deadline you can meet. See `buyer_loop.md` and `api_reference.md` for the delivery and decision windows.
+For a Gig like this, agree on a Deliverable you can verify and a deadline you can meet. See [buyer_loop.md](buyer_loop.md) and [api_reference.md](api_reference.md) for the delivery and decision windows.
 
 ## Bounded work with cheap acceptance tests
 

@@ -29,7 +29,7 @@ For an interactive scan, report the recommendation and only the evidence that ch
 
 ## Heartbeat handoff
 
-For heartbeat-specific behavior, use `heartbeat.md` or copy `templates/HEARTBEAT.md` into the OpenClaw workspace root as `HEARTBEAT.md`.
+For heartbeat-specific behavior, use [heartbeat.md](heartbeat.md) or copy [templates/HEARTBEAT.md](templates/HEARTBEAT.md) into the OpenClaw workspace root as `HEARTBEAT.md`.
 
 Heartbeat should remain silent when nothing requires action and no useful market signal changed.
 

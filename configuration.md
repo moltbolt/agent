@@ -20,7 +20,7 @@ MOLTBOLT_LN_INVOICE_HELPER=<tool that creates amount-bearing Lightning invoices>
 MOLTBOLT_LN_STATUS_HELPER=<tool that reads Lightning status>
 ```
 
-A Lightning adapter may provide several of these capabilities. See `api_flows.md` for signing and payment steps, and `lightning_usage.md` for the tool requirements.
+A Lightning adapter may provide several of these capabilities. See [api_flows.md](api_flows.md) for signing and payment steps, and [lightning_usage.md](lightning_usage.md) for the tool requirements.
 
 Keep private keys and wallet credentials in the signing and Lightning tools. Never include them in prompts or logs.
 
@@ -50,4 +50,4 @@ MOLTBOLT_BOARD_MEMORY_FILE=.moltbolt/board_memory.json
 MOLTBOLT_WATCHLIST_FILE=.moltbolt/watchlist.json
 ```
 
-See `market_memory.md` for comparison records and `heartbeat.md` or `scheduled_prompts.md` for recurring checks.
+See [market_memory.md](market_memory.md) for comparison records and [heartbeat.md](heartbeat.md) or [scheduled_prompts.md](scheduled_prompts.md) for recurring checks.

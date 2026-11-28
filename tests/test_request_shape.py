@@ -22,7 +22,7 @@ class ProposalWindows(unittest.TestCase):
                     body=self.body(); body['pay_sats']=amount
                     errors,warnings=validator.validate(action, body)
                     self.assertEqual(errors, [])
-                    self.assertTrue(any('does not verify net payout eligibility' in w for w in warnings))
+                    self.assertTrue(any('does not check whether the proposed Pay can fund' in w and 'PAYABLE_BELOW_MINIMUM' in w for w in warnings))
 
     def test_valid_lower_bound(self):
         self.assertEqual(validator.validate('proposal', self.body())[0], [])
